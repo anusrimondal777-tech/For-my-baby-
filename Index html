@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Baby ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ffd6e7, #fff0f5);
+  color: #b4235a;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px 22px;
+}
+
+.page.active { display: flex; }
+
+h1 { font-size: 32px; }
+p { font-size: 19px; line-height: 1.7; }
+
+button {
+  background: #ff4f87;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 14px 25px;
+  font-size: 17px;
+  margin-top: 18px;
+  cursor: pointer;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: float 6s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  to { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+}
+
+.big { font-size: 75px; }
+</style>
+</head>
+
+<body>
+
+<section class="page active">
+  <div class="big">💗</div>
+  <h1>Hey, My Favourite Person!</h1>
+  <p>Someone has a little surprise for you... 🥹💌</p>
+  <button onclick="nextPage()">Open My Surprise 🎁</button>
+</section>
+
+<section class="page">
+  <div class="big">💌</div>
+  <h1>A Little Love Letter</h1>
+  <p>
+    You are my favourite notification,<br>
+    my happiest thought,<br>
+    and my special person. ❤️<br>
+    I'm so lucky to have you in my life!
+  </p>
+  <button onclick="nextPage()">Next Surprise 💗</button>
+</section>
+
+<section class="page">
+  <div class="big">🧸💕</div>
+  <h1>Reasons I Love You</h1>
+  <p>
+    Your smile makes me happy. 🥹<br>
+    You make ordinary moments special. 💗<br>
+    And you will always have a special place in my heart. ❤️
+  </p>
+  <button onclick="nextPage()">One More! 🎀</button>
+</section>
+
+<section class="page">
+  <div class="big">🎁❤️</div>
+  <h1>My Favourite Person</h1>
+  <p>
+    No matter how far apart we are,<br>
+    you are always close to my heart. 💌<br><br>
+    This little website is made just for you! 🥹💕
+  </p>
+  <button onclick="restart()">Read It Again 💗</button>
+</section>
+
+<script>
+let current = 0;
+const pages = document.querySelectorAll('.page');
+
+function nextPage() {
+  pages[current].classList.remove('active');
+  current = (current + 1) % pages.length;
+  pages[current].classList.add('active');
+}
+
+function restart() {
+  pages[current].classList.remove('active');
+  current = 0;
+  pages[current].classList.add('active');
+}
+
+function makeHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.textContent = ['💗','💕','❤️','💖'][Math.floor(Math.random()*4)];
+  heart.style.left = Math.random()*100 + 'vw';
+  heart.style.fontSize = (18 + Math.random()*22) + 'px';
+  heart.style.animationDuration = (4 + Math.random()*4) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 8000);
+}
+
+setInterval(makeHeart, 350);
+</script>
+
+</body>
+</html>
